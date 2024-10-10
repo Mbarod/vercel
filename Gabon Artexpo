@@ -1,0 +1,43 @@
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import Image from "next/image"
+
+const artworks = [
+  { id: 1, title: "Abstract Harmony", artist: "Jane Doe", price: 2500, image: "/placeholder.svg?height=300&width=400" },
+  { id: 2, title: "Urban Reflections", artist: "John Smith", price: 1800, image: "/placeholder.svg?height=300&width=400" },
+  { id: 3, title: "Serenity in Blue", artist: "Emma Johnson", price: 3200, image: "/placeholder.svg?height=300&width=400" },
+  { id: 4, title: "Fragmented Reality", artist: "Michael Brown", price: 2200, image: "/placeholder.svg?height=300&width=400" },
+  { id: 5, title: "Neon Dreams", artist: "Sarah Lee", price: 2800, image: "/placeholder.svg?height=300&width=400" },
+  { id: 6, title: "Organic Patterns", artist: "David Wilson", price: 1950, image: "/placeholder.svg?height=300&width=400" },
+]
+
+export default function GalleryPage() {
+  return (
+    <div className="space-y-6">
+      <h1 className="text-3xl font-bold">Art Gallery</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {artworks.map((artwork) => (
+          <Card key={artwork.id}>
+            <CardHeader>
+              <Image
+                src={artwork.image}
+                alt={artwork.title}
+                width={400}
+                height={300}
+                className="rounded-lg object-cover w-full h-48"
+              />
+            </CardHeader>
+            <CardContent>
+              <CardTitle>{artwork.title}</CardTitle>
+              <p className="text-muted-foreground">by {artwork.artist}</p>
+            </CardContent>
+            <CardFooter className="flex justify-between items-center">
+              <span className="text-lg font-semibold">${artwork.price}</span>
+              <Button>View Details</Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
+    </div>
+  )
+}
